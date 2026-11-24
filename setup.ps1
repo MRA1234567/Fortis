@@ -73,7 +73,9 @@ if ($LASTEXITCODE -ne 0) {
     }
 
     if (Test-Path "$venvPy") {
-        & $venvPy -m pip uninstall --disable-pip-version-check --yes llama_cpp_python 2>$null | Out-Null
+        Invoke-Native {
+        	& $venvPy -m pip uninstall --disable-pip-version-check --yes llama_cpp_python 2>$null | Out-Null
+    	}
         $LASTEXITCODE = 0
     }
 
